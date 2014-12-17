@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+	version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
+
+	<!-- Define a single persistence unit -->
+	<persistence-unit name="dhbw">
+
+		<!-- The JPA implementation to use -->
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+		<!-- List classes to persist -->
+		<class>jpaexample.dto.Kurs</class>
+		<class>jpaexample.dto.Student</class>
+
+		<properties>
+			<!-- Generic JPA configuration -->
+			<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:derby:target/demoDhbwDatenbank;create=true" />
+			<property name="javax.persistence.jdbc.user" value="test" />
+			<property name="javax.persistence.jdbc.password" value="test" />
+
+			<!-- Hibernate-specific configuration -->
+
+			<!-- https://docs.jboss.org/hibernate/orm/4.0/javadocs/org/hibernate/dialect/Dialect.html -->
+			<property name="hibernate.dialect" value="org.hibernate.dialect.DerbyTenSevenDialect" />
+
+			<!-- hibernate.hbm2ddl.auto Automatically validates or exports schema DDL to the database when the SessionFactory is created. 
+				With create-drop, the database schema will be dropped when the SessionFactory is closed explicitly. validate: validate the 
+				schema, makes no changes to the database. update: update the schema. create: creates the schema, destroying previous data. 
+				create-drop: drop the schema at the end of the session. -->
+			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
+
+			<property name="hibernate.show_sql" value="true" />
+
+			<property name="hibernate.format_sql" value="true" />
+
+		</properties>
+
+	</persistence-unit>
+</persistence> 
