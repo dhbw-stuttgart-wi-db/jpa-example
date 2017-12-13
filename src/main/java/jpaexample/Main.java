@@ -10,23 +10,23 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import jpaexample.dto.Kurs;
-import jpaexample.dto.Student;
-
 import org.apache.log4j.PropertyConfigurator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import jpaexample.dto.Kurs;
+import jpaexample.dto.Student;
+
 public class Main {
-	static Logger log;
+	static final Logger log;
 	static final String PERSISTENCE_UNIT_NAME = "dhbw";
 
 	static {
 		configureLog4JFromClasspath();
+		log = LoggerFactory.getLogger(Main.class);
 	}
 
 	public static void main(String[] args) throws IOException {
-		log = LoggerFactory.getLogger(Main.class);
 		log.debug("Startup");
 
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
